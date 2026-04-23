@@ -163,15 +163,6 @@ public:
         
         len = new_size;
         data_ptr()[len] = '\0';
-        
-        // Space optimization: shrink to SSO if possible
-        if (new_size <= 15 && !is_sso()) {
-            char temp[16];
-            memcpy(temp, heap_ptr, len + 1);
-            delete[] heap_ptr;
-            memcpy(small_buffer, temp, len + 1);
-            cap = 15;
-        }
     }
 
     char& operator[](size_t index) {
