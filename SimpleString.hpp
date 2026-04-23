@@ -168,6 +168,10 @@ public:
     char& operator[](size_t index) {
         return data_ptr()[index];
     }
+    
+    const char& operator[](size_t index) const {
+        return data_ptr()[index];
+    }
 
     MyString operator+(const MyString& rhs) const {
         MyString result;
@@ -208,6 +212,13 @@ public:
     }
 
     const char& at(size_t pos) const {
+        if (pos >= len) {
+            throw std::out_of_range("Index out of range");
+        }
+        return data_ptr()[pos];
+    }
+    
+    char& at(size_t pos) {
         if (pos >= len) {
             throw std::out_of_range("Index out of range");
         }
