@@ -154,12 +154,7 @@ public:
 
     void resize(size_t new_size) {
         if (new_size > cap) {
-            // Grow capacity similar to append behavior
-            size_t new_cap = cap * 2;
-            if (new_cap < new_size) {
-                new_cap = new_size;
-            }
-            reserve(new_cap);
+            reserve(new_size);
         }
         
         if (new_size > len) {
